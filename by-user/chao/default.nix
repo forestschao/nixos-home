@@ -6,10 +6,6 @@
     ./xsession.nix
   ];
 
-  home.packages = with pkgs; [
-    (pkgs.callPackage ../../pkgs/resurrect {})
-  ];
-
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
