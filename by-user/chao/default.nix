@@ -4,7 +4,6 @@
   imports = [
     ./git.nix
     ./xsession.nix
-    ./ssh.nix
   ];
 
   home.packages = with pkgs; [
