@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -68,12 +68,5 @@
         };
       }
     ];
-  };
-
-  config = {
-    users.users."chao" = {
-      isNormalUser = true;
-      uid = 1000;
-    };
   };
 }
