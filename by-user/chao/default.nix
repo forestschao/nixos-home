@@ -10,7 +10,7 @@
     graphviz
     graphicsmagick
     ffmpeg
-  ]
+  ];
 
   programs.direnv = {
     enable = true;
