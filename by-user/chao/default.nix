@@ -36,7 +36,7 @@
 
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      theme = "ys";
       plugins = [
         "pass"     # pass store auto-completion
         "dotenv"
