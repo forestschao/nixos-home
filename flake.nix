@@ -27,7 +27,10 @@
     }; in {
       nixosModules.chao-home = mkHomeManagerModule {
         user = "chao";
-        imports = [ ./by-user/chao ];
+        imports = [
+          ./by-user/chao
+          ./machines/chao-vm.nix
+        ];
       };
 
       nixosConfigurations.chao-vm = nixpkgs.lib.nixosSystem {
