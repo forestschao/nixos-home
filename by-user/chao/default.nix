@@ -33,7 +33,6 @@
     enableAutosuggestions = true;
     enableSyntaxHighlighting = true;
     enableCompletion = true;
-    promptInit = "";
 
     oh-my-zsh = {
       enable = true;
