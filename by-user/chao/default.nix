@@ -6,7 +6,7 @@
     ./xsession.nix
   ];
 
-  home.packages = with pakgs; [
+  home.packages = with pkgs; [
     graphviz
     graphicsmagick
     ffmpeg
