@@ -6,6 +6,12 @@
     ./xsession.nix
   ];
 
+  home.packages = with pakgs; [
+    graphviz
+    graphicsmagick
+    ffmpeg
+  ]
+
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;

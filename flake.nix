@@ -24,7 +24,6 @@
       home-manager.users."${user}" = {
         inherit imports;
       };
-
     }; in {
       nixosModules.chao-home = mkHomeManagerModule {
         user = "chao";
