@@ -30,7 +30,11 @@
 
   programs.zsh = {
     enable = true;
-    
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    enableCompletion = true;
+    promptInit = "";
+
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
@@ -66,7 +70,5 @@
       }
     ];
 
-    enableCompletion = true;
-    enableSyntaxHighlighting = true;
   };
 }
