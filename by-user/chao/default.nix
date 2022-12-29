@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -70,12 +70,10 @@
     ];
   };
 
-  users.extraUsers = {
-    "chao" = {
+  config = {
+    users.users."chao" = {
       isNormalUser = true;
       uid = 1000;
-      shell = pkgs.zsh;
-      useDefaultShell = false;
-    };
-  };
+    }
+  }
 }
