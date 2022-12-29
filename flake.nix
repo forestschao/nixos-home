@@ -33,6 +33,7 @@
       nixosConfigurations.chao-vm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./machines/chao-vm.nix
           self.nixosModules.chao-home
         ];
       };
