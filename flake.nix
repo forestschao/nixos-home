@@ -30,5 +30,12 @@
         user = "chao";
         imports = [ ./by-user/chao ];
       };
+
+      nixosConfigurations.chao-vm = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          self.nixosModules.chao-home
+        ];
+      };
     };
 }
