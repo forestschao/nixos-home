@@ -74,6 +74,6 @@
     users.users."chao" = {
       isNormalUser = true;
       uid = 1000;
-    }
-  }
+    };
+  };
 }
