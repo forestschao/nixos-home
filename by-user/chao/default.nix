@@ -69,5 +69,12 @@
         };
       }
     ];
+
+    initExtra = ''
+      # Setting up direnv. Actually I am not entirely sure this is needed now.
+      if [ -x "$(command -v direnv)" ]; then
+        eval "$(direnv hook zsh)"
+      fi
+    '';
   };
 }
