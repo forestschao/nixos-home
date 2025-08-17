@@ -140,9 +140,6 @@ in {
             };
           };
 
-          bars = [{
-            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.home.homeDirectory}/.config/i3status-rust/config-bottom.toml";
-          }];
         };
       };
     };
@@ -150,6 +147,12 @@ in {
     # This will generate $HOME/.config/i3status-rust/config.toml
     programs.i3status-rust = {
       enable = true;
+
+      package = pkgs.i3status-rust.overrideAttrs (finalAttrs: prevAttrs: {
+        # Add the "awesome-fonts" feature to the list of Cargo features
+        cargoFeatures = (prevAttrs.cargoFeatures or []) ++ [ "awesome-fonts" ];
+      });
+
       bars = {
         bottom = {
           theme = "slick";

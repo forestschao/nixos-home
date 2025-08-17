@@ -7,8 +7,19 @@
     ./xsession.nix
   ];
 
+  home.username = "chao";
+  home.homeDirectory = "/home/chao";
+  home.stateVersion = "24.05";
+
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
+    roboto-mono
+    font-awesome
+    nerd-fonts.fira-code
+
     graphviz
+    neofetch
     graphicsmagick
     ffmpeg
   ];
@@ -23,7 +34,7 @@
 
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       dracula-theme.theme-dracula
       yzhang.markdown-all-in-one
     ];
@@ -70,13 +81,11 @@
       }
     ];
 
-    initExtra = ''
+    initContent = ''
       # Setting up direnv. Actually I am not entirely sure this is needed now.
       if [ -x "$(command -v direnv)" ]; then
         eval "$(direnv hook zsh)"
       fi
-
-      neofetch
     '';
   };
 }

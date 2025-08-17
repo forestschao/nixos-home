@@ -1,33 +1,27 @@
 {
-  description = "A bunch of home-manager modules";
+  description = "Chao's Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: let
-    mkHomeManagerModule = { user, imports }: { config, ... }: {
-      imports = [
-        (home-manager.nixosModules.home-manager)
-      ];
-      home-manager = {
-        # This is needed to make sure that home-manager follows the
-        # pkgs/nixpkgs specified in this flake.
-        #
-        # Relevant github issue: https://github.com/divnix/devos/issues/30
-        useGlobalPkgs = true;
-        useUserPackages = true;
-      };
-      home-manager.users."${user}" = {
-        inherit imports;
-      };
-    }; in {
-      nixosModules.chao-home = mkHomeManagerModule {
-        user = "chao";
-        imports = [ ./by-user/chao ];
+  outputs = { self, nixpkgs, home-manager }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      # This creates a Home Manager config for the user "chao"
+      homeConfigurations."chao" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        # This points to the default.nix file you showed me earlier,
+        # which contains all your settings and imports.
+        modules = [ ./by-user/chao/default.nix ];
       };
     };
 }

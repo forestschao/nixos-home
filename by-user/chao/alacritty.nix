@@ -1,54 +1,49 @@
-{ config, pkgs, ... }:
+# alacritty.nix
+{ pkgs, ... }:
 
+let
+  draculaColorTheme = {
+    primary = {
+      background = "#282a36";
+      foreground = "#f8f8f2";
+    };
+    normal = {
+      black   = "#000000";
+      red     = "#ff5555";
+      green   = "#50fa7b";
+      yellow  = "#f1fa8c";
+      blue    = "#bd93f9";
+      magenta = "#ff79c6";
+      cyan    = "#8be9fd";
+      white   = "#bfbfbf";
+    };
+    bright = {
+      black   = "#575b70";
+      red     = "#ff6e67";
+      green   = "#5af78e";
+      yellow  = "#f4f99d";
+      blue    = "#caa9fa";
+      magenta = "#ff92d0";
+      cyan    = "#9aedfe";
+      white   = "#e6e6e6";
+    };
+  };
+in
 {
-  programs.alacritty= {
+  programs.alacritty = {
     enable = true;
-
-    settings = let
-      draculaColorTheme = {
-        primary = {
-          background = "0x282a36";
-          foreground = "0xf8f8f2";
-        };
-        normal = {
-          black = "0x000000";
-          red = "0xff5555";
-          green = "0x50fa7b";
-          yellow = "0xf1fa8c";
-          blue = "0x6272a4";
-          magenta = "0xbd93f9";
-          cyan = "0x8be9fd";
-          white = "0xf8f8f2";
-        };
-      };
-
-      plainColorTheme = {
-        primary = {
-          background = "0x434343";
-          foreground = "0xececec";
-        };
-        normal = {
-          black = "0x000000";
-          red = "0xc62828";
-          green = "0x558b2f";
-          yellow = "0xf9a825";
-          blue = "0x1565c0";
-          magenta = "0x6a1e9a";
-          cyan = "0x00838f";
-          white = "0xf2f2f2";
-        };
-      }; in {
-        window.decorations = "full";
-        scrolling.history = 10000;
-        font = {
-          normal.family = "Fira Code";
-          bold.family = "Fira Code";
-          italic.family = "Fira Code";
-          size = if config.home.bds.laptopXsession then 8.0 else 10.0;
-          offset = { x = 0; y = 0; };
-        };
+    settings = {
+      # Merge your theme with the draw_bold_text_with_bright_colors setting
+      colors = draculaColorTheme // {
         draw_bold_text_with_bright_colors = true;
-        colors = draculaColorTheme;
       };
+
+      # Other settings
+      font = {
+        size = 12;
+        normal.family = "FiraCode Nerd Font";
+      };
+      window.opacity = 0.95;
+    };
   };
 }
